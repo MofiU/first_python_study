@@ -12,11 +12,11 @@ headers = {
     'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/46.0.2486.0 Safari/537.36 Edge/13.10586',
 }
 
-response = requests.get(
-    "https://xhamster.com/videos/next-door-milfs-from-the-uk-part-14-8053907",
-    headers=headers)
-#
-xml = html.fromstring(response.content)
+# response = requests.get(
+#     "https://xhamster.com/videos/next-door-milfs-from-the-uk-part-14-8053907",
+#     headers=headers)
+# #
+# xml = html.fromstring(response.content)
 
 #
 # get download link
@@ -26,22 +26,22 @@ xml = html.fromstring(response.content)
 
 #get video infomation
 
-video_user = xml.xpath("//td[@id='videoUser']")[0]
-
-
-
-author = video_user.xpath("div[@class='item']/span[@class='hint']")[0]
-print(author.attrib)
-
-
-duration = video_user.xpath("div[@class='item']/span[@itemprop='duration']")[0]
-print(duration.attrib)
-print(duration.tail)
-
-
-count = video_user.xpath("div[@class='item']/span[@itemprop='interactionCount']")[0]
-print(count.attrib)
-print(count.tail)
+# video_user = xml.xpath("//td[@id='videoUser']")[0]
+#
+#
+#
+# author = video_user.xpath("div[@class='item']/span[@class='hint']")[0]
+# print(author.attrib)
+#
+#
+# duration = video_user.xpath("div[@class='item']/span[@itemprop='duration']")[0]
+# print(duration.attrib)
+# print(duration.tail)
+#
+#
+# count = video_user.xpath("div[@class='item']/span[@itemprop='interactionCount']")[0]
+# print(count.attrib)
+# print(count.tail)
 
 
 # get categories
@@ -68,22 +68,24 @@ xml = html.fromstring(response.content)
 
 ## get page size
 
-pages = xml.xpath("//div[@class='pager']/table/tr/td/div/a")
-
-max_size = pages[-2].text
-print(max_size)
+# pages = xml.xpath("//div[@class='pager']/table/tr/td/div/a")
+#
+# max_size = pages[-2].text
+# print(max_size)
 
 
 # # get thumb image and visit link
 #
 #
-# videos = xml.xpath("//div[@class='video']")
-#
-# for video in videos:
-#     visit_link = video.xpath("a")[0]
-#     thumb_image = visit_link.xpath("div[@class='thumb_container']/img")[0]
-#     print(visit_link.attrib)
-#     print(thumb_image.attrib)
+videos = xml.xpath("//div[@class='video']")
+
+for video in videos:
+    visit_link = video.xpath("a")[0]
+    video_name = visit_link.xpath('u')[0].text
+    thumb_image = visit_link.xpath("div[@class='thumb_container']/img")[0]
+    print(visit_link.attrib)
+    print(thumb_image.attrib)
+    # print(video_name)
 
 # response = requests.get("https://xhamster.com/movies/8076030/download/720p", headers=headers)
 
