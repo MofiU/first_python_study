@@ -107,6 +107,7 @@ for i in list(range(1, 2)):
         video, _ = Video.get_or_create(name=video_name, visit_link=visit_link_href)
         video.view_value = view_value
         video.duration = duration
+        video.created_at = created_at
         video.save()
 
 
@@ -117,9 +118,9 @@ for i in list(range(1, 2)):
         for tag in tags:
             tmp_tag = None
             if not tag.xpath("i"):
-                tmp_tag, t = Tag.get_or_create(name=tag.text)
+                tmp_tag, _ = Tag.get_or_create(name=tag.text)
             else:
-                tmp_tag, t = Tag.get_or_create(name=tag.xpath("i")[0].tail)
+                tmp_tag, _ = Tag.get_or_create(name=tag.xpath("i")[0].tail)
             VideoTag.get_or_create(video_id=video.id, tag_id=tmp_tag.id)
 
         download_links = video_xml.xpath("//a[@class='download-video']")
