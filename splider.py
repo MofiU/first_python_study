@@ -12,11 +12,11 @@ headers = {
     'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/46.0.2486.0 Safari/537.36 Edge/13.10586',
 }
 
-# response = requests.get(
-#     "https://xhamster.com/videos/next-door-milfs-from-the-uk-part-14-8053907",
-#     headers=headers)
-# #
-# xml = html.fromstring(response.content)
+response = requests.get(
+    "https://xhamster.com/videos/next-door-milfs-from-the-uk-part-14-8053907",
+    headers=headers)
+#
+xml = html.fromstring(response.content)
 
 #
 # get download link
@@ -26,7 +26,7 @@ headers = {
 
 #get video infomation
 
-# video_user = xml.xpath("//td[@id='videoUser']")[0]
+video_user = xml.xpath("//td[@id='videoUser']")[0]
 #
 #
 #
@@ -39,9 +39,10 @@ headers = {
 # print(duration.tail)
 #
 #
-# count = video_user.xpath("div[@class='item']/span[@itemprop='interactionCount']")[0]
-# print(count.attrib)
-# print(count.tail)
+count = video_user.xpath("div[@class='item']/span[@itemprop='interactionCount']")[0]
+print(count.attrib)
+print(count.tail)
+
 
 
 # get categories
@@ -59,11 +60,11 @@ headers = {
 #         print(link.xpath("i")[0].tail)
 
 #
-response = requests.get(
-    "https://xhamster.com/",
-    headers=headers)
-
-xml = html.fromstring(response.content)
+# response = requests.get(
+#     "https://xhamster.com/",
+#     headers=headers)
+#
+# xml = html.fromstring(response.content)
 
 
 ## get page size
@@ -77,14 +78,14 @@ xml = html.fromstring(response.content)
 # # get thumb image and visit link
 #
 #
-videos = xml.xpath("//div[@class='video']")
+# videos = xml.xpath("//div[@class='video']")
 
-for video in videos:
-    visit_link = video.xpath("a")[0]
-    video_name = visit_link.xpath('u')[0].text
-    thumb_image = visit_link.xpath("div[@class='thumb_container']/img")[0]
-    print(visit_link.attrib)
-    print(thumb_image.attrib)
+# for video in videos:
+#     visit_link = video.xpath("a")[0]
+#     video_name = visit_link.xpath('u')[0].text
+#     thumb_image = visit_link.xpath("div[@class='thumb_container']/img")[0]
+#     print(visit_link.attrib)
+#     print(thumb_image.attrib)
     # print(video_name)
 
 # response = requests.get("https://xhamster.com/movies/8076030/download/720p", headers=headers)
